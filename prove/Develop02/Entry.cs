@@ -7,10 +7,8 @@ public class Entry {
     public string _entryText;
 
     // Behavior
-    public string Display()
+    public void Display()
     {
         Console.WriteLine($"Date: {_entryDateTime} - Prompt: {_prompt} \n{_entryText} \n");
-        string entry = $"Date: {_entryDateTime} - Prompt: {_prompt} \n{_entryText}";
-        return entry;
     }
 }
