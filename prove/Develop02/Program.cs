@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 
-// dotnet new console --use-program-main -o {project name}
 class Program
 {
     static void Main(string[] args)
