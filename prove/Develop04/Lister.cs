@@ -2,7 +2,7 @@ public class Lister : Activities
 {
     private List<string> _listPrompts;
 
-    public Lister() : base("Listing activity", "This activity will help you relfect on the good things in your life by having you list as many things as you ca nin a certian area.")
+    public Lister() : base("Listing activity", "This activity will help you relfect on the good things in your life by having you list as many things as you can in a certian area.")
     {
         _listPrompts = new List<string>
         {
