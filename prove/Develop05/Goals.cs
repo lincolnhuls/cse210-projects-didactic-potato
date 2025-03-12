@@ -8,6 +8,8 @@ public class Goals
 
     protected int _points;
 
+    protected int _achievedPoints;
+
     protected bool _complete;
 
     public Goals(string title, string description, int points)
@@ -37,12 +39,26 @@ public class Goals
         }
     }
 
-    public virtual void Record()
+    public int GetPoints()
     {
+        return _achievedPoints;
     }
 
-    public virtual bool IsComplete()
+    public virtual void IsComplete()
     {
-        return false;
+        _complete =  false;
+    }
+
+    public virtual void CalcPoints()
+    {
+        if (_complete)
+        {
+            _achievedPoints += _points;
+        }
+    }
+
+    public void SetComplete()
+    {
+        _complete = true;
     }
 }
