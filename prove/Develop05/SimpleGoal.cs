@@ -12,6 +12,11 @@ public class SimpleGoal : Goals
         _rewardedPoints = false;
     }
 
+    public SimpleGoal(string title, string description, int points, bool complete, bool rewardedPoints) : base(title, description, points, complete)
+    {
+        _rewardedPoints = rewardedPoints;
+    }
+
     public override void CalcPoints()
     {
         if (!_rewardedPoints && _complete)
@@ -28,5 +33,10 @@ public class SimpleGoal : Goals
             _complete = true;
             CalcPoints();
         }
+    }
+
+    public override string SaveFormat()
+    {
+        return $"SimpleGoal~{_title}~{_description}~{_points}~{_complete}~{_rewardedPoints}";
     }
 }

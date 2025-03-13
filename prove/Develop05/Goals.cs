@@ -39,11 +39,6 @@ public class Goals
         }
     }
 
-    public int GetPoints()
-    {
-        return _achievedPoints;
-    }
-
     public virtual void IsComplete()
     {
         _complete =  false;
@@ -57,8 +52,22 @@ public class Goals
         }
     }
 
-    public void SetComplete()
+    public virtual string SaveFormat() {
+        return "";
+    }
+
+    public int GetAchievedPoints()
     {
-        _complete = true;
+        return _achievedPoints;
+    }
+
+    public string GetTitle()
+    {
+        return _title;
+    }
+
+    public int GetPoints()
+    {
+        return _points;
     }
 }

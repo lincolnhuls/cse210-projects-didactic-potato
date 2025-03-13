@@ -1,0 +1,4 @@
+350
+SimpleGoal~Simple Goal~make sure the goal works~50~True~True
+EternalGoal~Eternal goal~Make sure this type of goal works~50~False
+ChecklistGoal~Checklist goal~Make sure that this type of goal works~50~False~100~2~2

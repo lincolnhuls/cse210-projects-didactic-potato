@@ -15,4 +15,9 @@ public class EternalGoal : Goals
         base.CalcPoints();
         _complete = false;
     }
+
+    public override string SaveFormat()
+    {
+        return $"EternalGoal~{_title}~{_description}~{_points}~{_complete}";
+    }
 }

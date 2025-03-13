@@ -22,6 +22,13 @@ public class ChecklistGoal : Goals
         _currentAmount = 0;
     }
 
+    public ChecklistGoal(string title, string description, int points, bool complete, int bonusPoints, int desiredAmount, int currentAmount) : base(title, description, points, complete)
+    {
+        _bonusPoints = bonusPoints;
+        _desiredAmount = desiredAmount;
+        _currentAmount = currentAmount;
+    }
+
     public override void Display()
     {
         if (_currentAmount >= _desiredAmount)
@@ -51,5 +58,10 @@ public class ChecklistGoal : Goals
     {
         _currentAmount++;
         CalcPoints();
+    }
+
+    public override string SaveFormat()
+    {
+        return $"ChecklistGoal~{_title}~{_description}~{_points}~{_complete}~{_bonusPoints}~{_desiredAmount}~{_currentAmount}";
     }
 }
