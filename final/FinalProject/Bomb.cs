@@ -1,0 +1,1 @@
+// A spefic type of cell for handling bombs in the game

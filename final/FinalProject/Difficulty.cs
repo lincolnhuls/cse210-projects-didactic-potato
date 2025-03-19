@@ -1,0 +1,1 @@
+// Stores difficulties and sets board size and mine number

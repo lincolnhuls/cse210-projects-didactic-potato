@@ -1,0 +1,1 @@
+// Stores player information like high scores that allow for multiple users
