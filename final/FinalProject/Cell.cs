@@ -32,4 +32,14 @@ public class Cell
     {
         _isRevealed = true;
     }
+
+    public bool IsRevealed()
+    {
+        return _isRevealed;
+    }
+
+    public bool IsFlagged()
+    {
+        return _isFlagged;
+    }
 }
