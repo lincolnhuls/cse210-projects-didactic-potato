@@ -1,1 +1,0 @@
-// Create and managers the time that will be used in the game
