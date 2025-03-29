@@ -5,6 +5,7 @@ namespace FinalProject
 {
     public partial class DifficultyForm : Form
     {
+
     public Difficulty SelectedDifficulty;
 
         public DifficultyForm()
@@ -42,7 +43,7 @@ namespace FinalProject
 
             this.Text = "Select Difficulty";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.ClientSize = new System.Drawing.Size(200, 200);
+            this.ClientSize = new System.Drawing.Size(500, 500);
         }
 
         private void SetDifficulty(string difficulty)

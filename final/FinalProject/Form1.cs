@@ -9,10 +9,11 @@ public partial class Form1 : Form
     private int _flagsPlaced = 0;
     private int _totalMines = 0;
 
-    public Form1(Difficulty difficulty)
+    public Form1(Difficulty difficulty, Player player)
     {
         InitializeComponent();
         Board board = new Board(difficulty, form: this);
+        GameManager gameManager = new GameManager(board);
 
         _totalMines = board.GetTotalMines();
         int buttonSize = 30;
@@ -49,7 +50,7 @@ public partial class Form1 : Form
 
         this.Controls.Add(_flagLabel);
         this.Controls.Add(_mineLabel);
-        DisplayGrid(board, buttonSize, verticalOffset);
+        DisplayGrid(board, buttonSize, verticalOffset, gameManager);
         this.Controls.Add(bottomLabel);
         this.Text = "Minesweeper";
     }
@@ -61,7 +62,7 @@ public partial class Form1 : Form
         _mineLabel.Text = $"Mines: {_totalMines - _flagsPlaced}";
     }
 
-    public void DisplayGrid(Board board, int buttonSize, int verticalOffset)
+    public void DisplayGrid(Board board, int buttonSize, int verticalOffset, GameManager gameManager)
     {
         int gridButtonSize = buttonSize;
         int girdVerticalOffset = verticalOffset;
@@ -96,6 +97,12 @@ public partial class Form1 : Form
                         button.Text = numbercell.CountAdjacentMines().ToString();
                         button.Enabled = false;
                     }
+
+                    if (gameManager.IsGameLost(position.X, position.Y))
+                    {
+                        MessageBox.Show("Game Over! You hit a mine.");
+                        Application.Restart();
+                    } 
                 };
 
                 button.MouseUp += (sender, e) =>

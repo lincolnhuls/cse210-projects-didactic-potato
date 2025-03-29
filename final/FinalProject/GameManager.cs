@@ -1,31 +1,35 @@
 // // Keeps track of score  and remaining bombs
-// public class GameManager
-// {
-//     private Board _board;
-//     private int _flagsPlaced;
-//     private int _totalMines;
-//     private Label _scoreLabel;
-//     private Label _bombsLabel;
+public class GameManager
+{
+    private Board _board;
+    
+    private bool _gameLost;
 
-//     public GameManager(Difficulty difficulty, Label scoreLabel, Label bombsLabel)
-//     {
-//         _board = new Board(difficulty.GetRows(), difficulty.GetCols(), difficulty.GetTotalMines());
-//         _flagsPlaced = 0;
-//         _totalMines = difficulty.GetTotalMines();
-//         _scoreLabel = scoreLabel;
-//         _bombsLabel = bombsLabel;
+    private bool _gameWon;
 
-//         UpdateLabels();
-//     }
+    public GameManager(Board board)
+    {
+        _board = board;
+        _gameWon = false;
+        _gameLost = false;
+    }
 
-//     public void UpdateLabels()
-//     {
-//         _scoreLabel.Text = $"Score: {_flagsPlaced}";
-//         _bombsLabel.Text = $"Bombs Left: {_totalMines - _flagsPlaced}";
-//     }
+    public Board GetBoard()
+    {
+        return _board;
+    }
 
-//     public Board GetBoard()
-//     {
-//         return _board;
-//     }
-// }
+    public bool IsGameLost(int row, int col)
+    {
+        if (_board.GetCell(row, col).IsRevealed() && _board.GetCell(row, col) is Bomb)
+        {
+            _gameLost = true;
+        }
+        return _gameLost;
+    }
+
+    public bool IsGameWon()
+    {
+        return false;
+    }
+}
