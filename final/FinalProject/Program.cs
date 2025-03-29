@@ -11,6 +11,12 @@ static class Program
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
-        Application.Run(new Form1());
+        DifficultyForm difficultyForm = new DifficultyForm();
+        Application.Run(difficultyForm);
+
+        Difficulty selectedDifficulty = difficultyForm.SelectedDifficulty;
+
+        Form1 mainForm = new Form1(selectedDifficulty);
+        Application.Run(mainForm);
     }    
 }

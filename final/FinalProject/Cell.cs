@@ -1,17 +1,19 @@
 // Each spot in the game and its generic methods
 public class Cell
 {
-    private int _row;
+    protected int _row;
 
-    private int _col;
+    protected int _col;
 
-    private bool _isMine;
+    protected bool _isMine;
 
-    private bool _isRevealed;
+    protected bool _isRevealed;
 
-    private bool _isFlagged;    
+    protected bool _isFlagged;    
 
-    private int _adjacentMines;
+    protected int _adjacentMines;
+
+    protected bool _gameOver;
 
     public Cell(int row, int col, bool isMine = false)
     {
@@ -21,6 +23,7 @@ public class Cell
         _isRevealed = false;
         _isFlagged = false;
         _adjacentMines = 0;
+        _gameOver = false;
     }
 
     public void ToggleFlag()
@@ -41,5 +44,10 @@ public class Cell
     public bool IsFlagged()
     {
         return _isFlagged;
+    }
+
+    public bool IsMine()
+    {
+        return _isMine;
     }
 }
