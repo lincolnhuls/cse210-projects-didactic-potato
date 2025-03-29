@@ -14,6 +14,7 @@ namespace FinalProject
 
             Button guestButton = new Button
             {
+                FlatStyle = FlatStyle.Flat,
                 Text = "Guest",
                 Location = new System.Drawing.Point(10, 10),
                 Size = new System.Drawing.Size(100, 40)
@@ -23,6 +24,7 @@ namespace FinalProject
 
             Button loadPlayer = new Button
             {
+                FlatStyle = FlatStyle.Flat,
                 Text = "Load Player",
                 Location = new System.Drawing.Point(10, 60),
                 Size = new System.Drawing.Size(100, 40)

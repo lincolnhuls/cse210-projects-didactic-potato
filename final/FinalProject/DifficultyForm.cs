@@ -15,6 +15,7 @@ namespace FinalProject
 
             Button easyButton = new Button
             {
+                FlatStyle = FlatStyle.Flat,
                 Text = "Easy",
                 Location = new System.Drawing.Point(10, 10),
                 Size = new System.Drawing.Size(100, 40)
@@ -23,6 +24,7 @@ namespace FinalProject
 
             Button mediumButton = new Button
             {
+                FlatStyle = FlatStyle.Flat,
                 Text = "Medium",
                 Location = new System.Drawing.Point(10, 60),
                 Size = new System.Drawing.Size(100, 40)
@@ -31,6 +33,7 @@ namespace FinalProject
 
             Button hardButton = new Button
             {
+                FlatStyle = FlatStyle.Flat,
                 Text = "Hard",
                 Location = new System.Drawing.Point(10, 110),
                 Size = new System.Drawing.Size(100, 40)

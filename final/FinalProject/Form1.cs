@@ -1,3 +1,4 @@
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing.Text;
 
 namespace FinalProject;
@@ -78,7 +79,8 @@ public partial class Form1 : Form
                     Width = buttonSize,
                     Height = buttonSize,
                     Location = new Point(col * buttonSize, row * buttonSize + verticalOffset),
-                    Tag = new Point(row, col)
+                    Tag = new Point(row, col),
+                    FlatStyle = FlatStyle.Flat
                 };
 
                 button.Click += (sender, e) =>
@@ -89,13 +91,44 @@ public partial class Form1 : Form
 
                     if (cell.IsMine())
                     {
+                        button.Font = new Font(button.Font, FontStyle.Bold);
                         button.Text = "*";
                         button.BackColor = Color.Red;
                     }
                     else if (cell is Number numbercell)
                     {
+                        button.Font = new Font(button.Font, FontStyle.Bold);
                         button.Text = numbercell.CountAdjacentMines().ToString();
-                        button.Enabled = false;
+                        if (numbercell.CountAdjacentMines() == 1)
+                        {
+                            button.ForeColor = Color.Blue; 
+                        }
+                        else if (numbercell.CountAdjacentMines() == 2)
+                        {
+                            button.ForeColor = Color.Green; 
+                        }
+                        else if (numbercell.CountAdjacentMines() == 3)
+                        {
+                            button.ForeColor = Color.Red; 
+                        }
+                        else if (numbercell.CountAdjacentMines() == 4)
+                        {
+                            button.ForeColor = Color.Purple; 
+                        }
+                        else if (numbercell.CountAdjacentMines() == 5)
+                        {
+                            button.ForeColor = Color.Maroon; 
+                        }
+                        else if (numbercell.CountAdjacentMines() == 6)
+                        {
+                            button.ForeColor = Color.Cyan; 
+                        }
+                        else if (numbercell.CountAdjacentMines() == 7)
+                        {
+                            button.ForeColor = Color.Gray; 
+                        }
+
+                        button.Refresh();
                     }
 
                     if (gameManager.IsGameLost(position.X, position.Y))
