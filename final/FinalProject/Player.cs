@@ -17,12 +17,4 @@ public class Player
     {
         _name = name;
     }
-
-    public void SavePlayer()
-    {
-    }
-
-    public void LoadPlayer()
-    {
-    }
 }
