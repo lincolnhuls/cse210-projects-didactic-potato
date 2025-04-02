@@ -87,7 +87,22 @@ public partial class Form1 : Form
                 {
                     Point position = (Point)button.Tag;
                     Cell cell = board.GetCell(position.X, position.Y);
-                    cell.Reveal();
+                    if (cell.IsRevealed())
+                    {
+                        if (cell is Number numberCell)
+                        {
+                        numberCell.RevealAdjacentCells(position.X, position.Y);
+                        }
+                    }
+                    else
+                    {
+                        cell.Reveal();
+                    }
+                    if (gameManager.IsGameWon())
+                    {
+                        MessageBox.Show("Congratulations! You won the game.");
+                        Application.Restart();
+                    }
 
                     if (cell.IsMine())
                     {
@@ -160,7 +175,7 @@ public partial class Form1 : Form
                     }
                 };
                 this.Controls.Add(button);
-                button.BackColor = Color.LightGray; // Default color for buttons
+                button.BackColor = Color.LightGray; 
             }
         }
     }
@@ -173,19 +188,71 @@ public partial class Form1 : Form
             {
                 if (cell.IsMine())
                 {
+                    button.Font = new Font(button.Font, FontStyle.Bold);
                     button.Text = "*";
                     button.BackColor = Color.Red;
                 }
                 else if (cell is Number numberCell)
                 {
                     int adjacentMines = numberCell.CountAdjacentMines();
-                    if (adjacentMines > 0)
+                    button.Font = new Font(button.Font, FontStyle.Bold);
+                    button.Text = adjacentMines > 0 ? adjacentMines.ToString() : "";
+                    button.BackColor = Color.White;
+
+                    if (adjacentMines == 1) button.ForeColor = Color.Blue;
+                    else if (adjacentMines == 2) button.ForeColor = Color.Green;
+                    else if (adjacentMines == 3) button.ForeColor = Color.Red;
+                    else if (adjacentMines == 4) button.ForeColor = Color.Purple;
+                    else if (adjacentMines == 5) button.ForeColor = Color.Maroon;
+                    else if (adjacentMines == 6) button.ForeColor = Color.Cyan;
+                    else if (adjacentMines == 7) button.ForeColor = Color.Gray;
+                }
+                else
+                {
+                    button.Text = "";
+                    button.BackColor = Color.White;
+                }
+            }
+        }
+    }
+    public void RevealEntireBoard(Board board)
+    {
+        for (int row = 0; row < board.GetRows(); row++)
+        {
+            for (int col = 0; col < board.GetCols(); col++)
+            {
+                Cell cell = board.GetCell(row, col);
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is Button button && button.Tag is Point tag && tag == new Point(row, col))
                     {
-                        button.Text = adjacentMines.ToString();
-                    }
-                    else
-                    {
-                        button.Text = "";
+                        if (cell.IsMine())
+                        {
+                            button.Font = new Font(button.Font, FontStyle.Bold);
+                            button.Text = "*";
+                            button.BackColor = Color.Red;
+                        }
+                        else if (cell is Number numberCell)
+                        {
+                            button.Font = new Font(button.Font, FontStyle.Bold);
+                            button.Text = numberCell.CountAdjacentMines().ToString();
+                            button.BackColor = Color.White;
+
+                            int adjacentMines = numberCell.CountAdjacentMines();
+                            if (adjacentMines == 1) button.ForeColor = Color.Blue;
+                            else if (adjacentMines == 2) button.ForeColor = Color.Green;
+                            else if (adjacentMines == 3) button.ForeColor = Color.Red;
+                            else if (adjacentMines == 4) button.ForeColor = Color.Purple;
+                            else if (adjacentMines == 5) button.ForeColor = Color.Maroon;
+                            else if (adjacentMines == 6) button.ForeColor = Color.Cyan;
+                            else if (adjacentMines == 7) button.ForeColor = Color.Gray;
+                        }
+                        else
+                        {
+                            button.Text = "";
+                            button.BackColor = Color.White;
+                        }
                     }
                 }
             }
