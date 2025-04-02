@@ -40,13 +40,11 @@ public class Number : Cell
         _adjacentMines = CountAdjacentMines();
         base.Reveal();
 
-        // Update the UI for the current cell
         if (_board.GetForm() is Form1 form)
         {
             form.UpdateGrid(_row, _col, this);
         }
 
-        // If there are no adjacent mines, reveal all neighbors
         if (_adjacentMines == 0)
         {
             FloodFill(_row, _col);

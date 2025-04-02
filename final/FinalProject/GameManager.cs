@@ -31,24 +31,22 @@ public class GameManager
     public bool IsGameWon()
     {
         int flaggedMines = 0;
+
         for (int row = 0; row < _board.GetRows(); row++)
         {
             for (int col = 0; col < _board.GetCols(); col++)
             {
                 Cell cell = _board.GetCell(row, col);
-                if (!cell.IsMine() && !cell.IsRevealed())
-                {
-                    return false;
-                }
+
                 if (cell.IsMine() && cell.IsFlagged())
                 {
                     flaggedMines++;
                 }
-                if (flaggedMines == _board.GetTotalMines())
-                {
-                    _gameWon = true;
-                }
             }
+        }
+        if (flaggedMines == _board.GetTotalMines())
+        {
+            _gameWon = true;
         }
         return _gameWon;
     }

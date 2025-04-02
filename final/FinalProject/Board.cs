@@ -11,14 +11,6 @@ public class Board
 
     private Form1 _form;
 
-    // private int _minesRemaining;
-
-    // private int _totalFlags;
-
-    // private bool _isGameOver;
-
-    // private string _difficulty;
-
     private List<List<Cell>> _grid;
 
     // public Board(int rows, int cols, Form1 form, string difficulty)
@@ -122,10 +114,4 @@ public class Board
     {
         return _form;
     }
-
-    // public string SetDifficulty(string difficulty)
-    // {
-    //     _difficulty = difficulty;
-    //     return _difficulty;
-    // }
 }
