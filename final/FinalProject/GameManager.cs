@@ -52,16 +52,12 @@ public class GameManager
                 }
                 else if (!cell.IsMine() && cell.IsFlagged())
                 {
-                    // Incorrectly flagged non-mine cells
                     totalCorrectFlags--;
                 }
             }
         }
 
-        // Win condition 1: All non-mine cells are revealed
-        // Win condition 2: All mines are correctly flagged and total flags equals total mines
-        if (totalRevealed == totalNonMines || 
-            (flaggedMines == _board.GetTotalMines() && totalCorrectFlags == _board.GetTotalMines()))
+        if (totalRevealed == totalNonMines || (flaggedMines == _board.GetTotalMines() && totalCorrectFlags == _board.GetTotalMines()))
         {
             _gameWon = true;
         }
