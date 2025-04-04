@@ -92,6 +92,12 @@ public partial class Form1 : Form
                         if (cell is Number numberCell)
                         {
                         numberCell.RevealAdjacentCells(position.X, position.Y);
+
+                        if (gameManager.IsGameWon())
+                        {
+                            MessageBox.Show("Congratulations! You won the game.");
+                            Application.Restart();
+                        }
                         }
                     }
                     else
@@ -149,6 +155,7 @@ public partial class Form1 : Form
                     if (gameManager.IsGameLost(position.X, position.Y))
                     {
                         MessageBox.Show("Game Over! You hit a mine.");
+                        board.GetForm().RevealEntireBoard(board);
                         Application.Restart();
                     } 
                 };
@@ -159,19 +166,25 @@ public partial class Form1 : Form
                     {
                         if (!button.Enabled) return;
 
+                        Point position = (Point)button.Tag;
+                        Cell cell = board.GetCell(position.X, position.Y);
+
                         if (button.Text == "F")
                         {
                             button.Text = "";
                             button.BackColor = Color.LightGray;
                             _flagsPlaced--;
+                            cell.ToggleFlag();
                         }
                         else
                         {
                             button.Text = "F";
                             button.BackColor = Color.LightGreen;
                             _flagsPlaced++;
+                            cell.ToggleFlag();
                         }
                         UpdateLabels();
+                        gameManager.IsGameWon();
                     }
                 };
                 this.Controls.Add(button);

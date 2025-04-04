@@ -31,6 +31,9 @@ public class GameManager
     public bool IsGameWon()
     {
         int flaggedMines = 0;
+        int totalCorrectFlags = 0;
+        int totalRevealed = 0;
+        int totalNonMines = (_board.GetRows() * _board.GetCols()) - _board.GetTotalMines();
 
         for (int row = 0; row < _board.GetRows(); row++)
         {
@@ -41,13 +44,28 @@ public class GameManager
                 if (cell.IsMine() && cell.IsFlagged())
                 {
                     flaggedMines++;
+                    totalCorrectFlags++;
+                }
+                else if (!cell.IsMine() && cell.IsRevealed())
+                {
+                    totalRevealed++;
+                }
+                else if (!cell.IsMine() && cell.IsFlagged())
+                {
+                    // Incorrectly flagged non-mine cells
+                    totalCorrectFlags--;
                 }
             }
         }
-        if (flaggedMines == _board.GetTotalMines())
+
+        // Win condition 1: All non-mine cells are revealed
+        // Win condition 2: All mines are correctly flagged and total flags equals total mines
+        if (totalRevealed == totalNonMines || 
+            (flaggedMines == _board.GetTotalMines() && totalCorrectFlags == _board.GetTotalMines()))
         {
             _gameWon = true;
         }
+
         return _gameWon;
     }
 }
