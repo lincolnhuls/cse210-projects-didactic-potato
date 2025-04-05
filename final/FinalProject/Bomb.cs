@@ -11,6 +11,5 @@ public class Bomb : Cell
     public override void Reveal()
     {
         base.Reveal();
-        // _board.GameOver();
     }
 }
